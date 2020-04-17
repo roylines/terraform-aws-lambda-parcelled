@@ -1,45 +1,45 @@
 variable "name" {
   description = "the name of the lambda"
-  type        = "string"
+  type        = string
 }
 
 variable "handler_name" {
   description = "the function (and handler) name"
-  type        = "string"
+  type        = string
   default     = "handler"
 }
 
 variable "source_name" {
   description = "the name of the lambda source file"
-  type        = "string"
+  type        = string
   default     = "index.js"
 }
 
 variable "working_dir" {
   description = "the working directory where the source javascript resides"
-  type        = "string"
+  type        = string
 }
 
 variable "policy_json" {
   description = "additional policy json to be attached to the lambda"
-  type        = "string"
+  type        = string
 }
 
 variable "reserved_concurrent_executions" {
   description = "the reserved concurrent connections for the lambda"
-  type        = "string"
+  type        = string
   default     = "1"
 }
 
 variable "timeout" {
   description = "the timeout to configure with the lambda"
-  type        = "string"
+  type        = string
   default     = "5"
 }
 
 variable "memory_size" {
   description = "the memory size of the lambda"
-  type        = "string"
+  type        = string
   default     = "128"
 }
 
@@ -61,7 +61,7 @@ data "archive_file" "lambda" {
   type        = "zip"
   source_file = "${var.working_dir}/${var.name}.js"
   output_path = "${var.working_dir}/${var.name}.zip"
-  depends_on  = ["null_resource.package"]
+  depends_on  = [null_resource.package]
 }
 
 // create the log group
